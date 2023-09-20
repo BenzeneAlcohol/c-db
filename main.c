@@ -4,6 +4,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include "input_buffer.h"
+#include "utils/io_helpers.c"
 
 void print_prompt() {
   printf("db > ");
@@ -14,7 +15,9 @@ int main(int argc, char *argv[]) {
   while (true) {
     print_prompt();
     read_input(input_buffer);
-
+    if(is_metacommand(input_buffer)) {
+      printf("Hi");
+    }
     if (strcmp(input_buffer->buffer, ".exit") == 0) {
       free_input_buffer(input_buffer);
       exit(EXIT_SUCCESS);
