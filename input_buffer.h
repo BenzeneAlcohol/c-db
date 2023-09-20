@@ -9,6 +9,9 @@ struct InputBuffer_t {
 
 typedef struct InputBuffer_t InputBuffer;
 
+
+// Defining all the function headers here that are to be exported to other files.
+
 void read_input(InputBuffer* input_buffer);
 InputBuffer* new_input_buffer();
 void print_prompt();
