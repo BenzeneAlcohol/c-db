@@ -4,7 +4,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include "input_buffer.h"
-#include "utils/io_helpers.c"
+#include "utils/io_helper.c"
 
 void print_prompt() {
   printf("mdb > ");
