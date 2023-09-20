@@ -7,11 +7,12 @@
 #include "utils/io_helpers.c"
 
 void print_prompt() {
-  printf("db > ");
+  printf("mdb > ");
 }
 
 int main(int argc, char *argv[]) {
-  InputBuffer *input_buffer = new_input_buffer(); // initializing the structure
+  InputBuffer *input_buffer = new_input_buffer(); // Initializing the structure
+  Table *table = new_table(); //Initializing the table
   while (true) {
     print_prompt();
     read_input(input_buffer);
@@ -24,9 +25,14 @@ int main(int argc, char *argv[]) {
           continue;
       }
     }
-    else {
-      Statement statement;
-      execute_statement(input_buffer, &statement);
+    Statement statement;
+    switch(execute_statement(input_buffer, &statement, table)) {
+      case (EXECUTE_SUCCESS):
+        printf("Executed.\n");
+        break;
+      case (EXECUTE_TABLE_FULL):
+        printf("Error: Table FULL.\n");
+        break;
     }
   }
 }
