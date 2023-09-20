@@ -25,7 +25,8 @@ int main(int argc, char *argv[]) {
       }
     }
     else {
-      printf("Hi, welcome! \n");
+      Statement statement;
+      execute_statement(input_buffer, &statement);
     }
   }
 }
