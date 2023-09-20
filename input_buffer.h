@@ -16,7 +16,5 @@ void read_input(InputBuffer* input_buffer);
 InputBuffer* new_input_buffer();
 void print_prompt();
 void free_input_buffer(InputBuffer *input_buffer);
-bool is_meta_command(InputBuffer* input_buffer);
-bool execute_meta_command(InputBuffer* input_buffer);
 
 #endif

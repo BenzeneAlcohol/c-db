@@ -24,5 +24,8 @@ int main(int argc, char *argv[]) {
           continue;
       }
     }
+    else {
+      printf("Hi, welcome! \n");
+    }
   }
 }
