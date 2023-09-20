@@ -15,14 +15,14 @@ int main(int argc, char *argv[]) {
   while (true) {
     print_prompt();
     read_input(input_buffer);
-    if(is_metacommand(input_buffer)) {
-      printf("Hi");
-    }
-    if (strcmp(input_buffer->buffer, ".exit") == 0) {
-      free_input_buffer(input_buffer);
-      exit(EXIT_SUCCESS);
-    } else {
-      printf("Unrecognized command '%s'.\n", input_buffer->buffer);
+    if(is_meta_command(input_buffer)) {
+      switch(execute_meta_command(input_buffer)) {
+        case (META_COMMAND_SUCCESS):
+          continue;
+        case (META_COMMAND_UNRECOGNIZED):
+          printf("Unrecognized command !!!%s \n", input_buffer->buffer);
+          continue;
+      }
     }
   }
 }
