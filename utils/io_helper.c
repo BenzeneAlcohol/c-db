@@ -1,42 +1,11 @@
 #include "../input_buffer.h"
-
-typedef enum { META_COMMAND_SUCCESS,
-               META_COMMAND_UNRECOGNIZED } MetaCommandResult;
-
-typedef enum { PREPARE_SUCCESS,
-               PREPARE_UNRECOGNIZED_STATEMENT } PrepareResult;
-typedef enum { STATEMENT_INSERT,
-               STATEMENT_SELECT,
-               STATEMENT_NONE } StatementType;
-
-typedef enum { EXECUTE_SUCCESS, 
-               EXECUTE_TABLE_FULL } ExecuteResult;
+#include "io_helper.h"
 
 #define size_of_attribute(Struct, Attribute) sizeof(((Struct*)0)->Attribute) // It calculates the size of that attribute within the structure 
-#define TABLE_MAX_PAGES 100 // Maximum Pages in the table
 
 ///////////////////////////////////
 // STRUCTURE OF THE TABLE BEGINS //
 ///////////////////////////////////
-
-#define COLUMN_USERNAME_SIZE 32
-#define COLUMN_EMAIL_SIZE 255
-
-typedef struct {
-  __u_int id;
-  char username[COLUMN_USERNAME_SIZE];
-  char email[COLUMN_EMAIL_SIZE];
-} Row;
-
-typedef struct {
-  StatementType type;
-  Row row_details;
-} Statement;
-
-typedef struct {
-  __uint32_t num_rows;
-  void* pages[TABLE_MAX_PAGES]; //Each element in the array can hold the memory address of any type of data (void*)
-} Table;
 
 /////////////////////////////////
 // STRUCTURE OF THE TABLE ENDS //
@@ -76,6 +45,7 @@ void free_table(Table* table) {
   free(table);
 }
 
+// Serialize function
 void serialize_row(Row* source, void* destination) {
   memcpy(destination+ID_OFFSET, &(source->id), ID_SIZE); // Copies ID_SIZE bytes from address of (source->id) to destination+ID_OFFSET
   memcpy(destination+USERNAME_OFFSET, &(source->username), USERNAME_SIZE); // Copies USERNAME_SIZE bytes (same as above)

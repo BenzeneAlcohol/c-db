@@ -1,6 +1,12 @@
 #ifndef INPUT_BUFFER_H
 #define INPUT_BUFFER_H
 
+#include <fcntl.h>
+#include <stdbool.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
 struct InputBuffer_t {
   char* buffer;
   size_t buffer_length;

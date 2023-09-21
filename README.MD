@@ -1,3 +1,3 @@
-You need to compile both `main.c` and `input_buffer.c` together to run the program.
+You need to compile both `main.c`, `input_buffer.c` and `io_helper.c` together to run the program.
 
-`gcc main.c input_buffer.c -o main`
+`gcc main.c input_buffer.c utils/io_helper.c -o main`
